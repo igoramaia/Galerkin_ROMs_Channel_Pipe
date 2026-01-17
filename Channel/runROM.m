@@ -2,6 +2,7 @@
 %% Run Galerkin system of ODE's and reconstruct velocity field
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%
 clear
 close all;
 clc
