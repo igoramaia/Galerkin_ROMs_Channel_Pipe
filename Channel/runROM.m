@@ -88,12 +88,13 @@ Ubulklam            = -trapz(y,Ulam)/2;
 q0 = 0.3*qlam + 2.0*(rand(nmodes,1)-0.5);
 
 tspan               = 0:0.1:200;
-options             = odeset('RelTol',1e-6);
+%options             = odeset('RelTol',1e-6);
+options             = odeset('RelTol',1e-5,'AbsTol',1e-6,'Jacobian',@(t,X) jacob(t,X,L,Qn,Retau),'JPattern',@(t,X) jacob_pat(t,X,L,Qn,Retau));
 disp(['Nmodes = ' int2str(nmodes)])
 disp('Simulation');
 % Time integration
 tic;
-[t,q]               = ode45(@(t,X) galerkinsys(t,X,L,QQ,F,Retau),tspan,q0,options);
+[t,q]               = ode15s(@(t,X) galerkinsys(t,X,L,QQ,F,Retau),tspan,q0,options);
 toc
 
 % Plot mode coefficients
